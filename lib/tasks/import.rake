@@ -10,15 +10,17 @@ task :import => [:environment] do
   end
 
   models.reverse.each do |model|
-    puts "#{model} objects coming in hot!"
     CSV.foreach("./data/#{model}s.csv",
                   headers: true, header_converters: :symbol) do |row|
                     model.create!(row.to_h)
                   end
+    total = model.all.count
+    puts "#{total} #{model} objects coming in hot!"
   end
+
   ActiveRecord::Base.connection.tables.each do |t|
     ActiveRecord::Base.connection.reset_pk_sequence! (t)
   end
 
-  puts "and scene...ready to rails engine it up."
+  puts "And scene...ready to Rails Engine it up..."
 end
