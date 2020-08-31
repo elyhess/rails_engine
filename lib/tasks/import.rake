@@ -13,6 +13,11 @@ task :import => [:environment] do
     CSV.foreach("./data/#{model}s.csv",
                   headers: true, header_converters: :symbol) do |row|
                     model.create!(row.to_h)
+                    new = model.last
+                    if new[:unit_price]!= nil
+                      new[:unit_price] = new[:unit_price]/100
+                      new.save
+                    end
                   end
     total = model.all.count
     puts "#{total} #{model} objects coming in hot!"
