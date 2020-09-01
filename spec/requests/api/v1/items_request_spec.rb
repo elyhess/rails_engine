@@ -47,4 +47,29 @@ describe "Items API" do
     expect(response.status).to eq(200)
     expect{Item.find(item.id)}.to raise_error(ActiveRecord::RecordNotFound)
   end
+  it "updates an item" do
+   item = create(:item)
+   old_name = item.name
+   old_description = item.description
+   old_price = item.unit_price
+   item_params = {
+                   name: 'Newly Updated',
+                   description: 'New description',
+                   unit_price: 444.44
+                 }
+
+   put "/api/v1/items/#{item.id}", params: item_params
+
+   expect(response).to be_successful
+   expect(response.status).to eq(200)
+
+   item = Item.find(item.id)
+
+   expect(item.name).to eq(item_params[:name])
+   expect(item.description).to eq(item_params[:description])
+   expect(item.unit_price).to eq(item_params[:unit_price])
+   expect(item.name).to_not eq(old_name)
+   expect(item.description).to_not eq(old_description)
+   expect(item.unit_price).to_not eq(old_price)
+ end
 end
