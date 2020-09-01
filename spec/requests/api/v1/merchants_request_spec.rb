@@ -36,11 +36,8 @@ describe "Merchant API endpoints" do
 
     expect{ delete "/api/v1/merchants/#{merchant.id}" }.to change(Merchant, :count).by(-1)
     expect(response).to be_successful
-    result = JSON.parse(response.body)
-
-    expect(result).to be_instance_of(Hash)
-    expect(result.keys.first).to eq('data')
-    expect(result['data']['id']).to eq("#{merchant.id}")
+    expect(response.body).to be_empty
+    expect(response.status).to eq(204)
     expect{Merchant.find(merchant.id)}.to raise_error(ActiveRecord::RecordNotFound)
   end
   it "can update an exisiting merchant" do

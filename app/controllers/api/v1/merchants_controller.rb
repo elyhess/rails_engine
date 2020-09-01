@@ -13,7 +13,7 @@ class Api::V1::MerchantsController < ApplicationController
   end
 
   def destroy
-    render json: MerchantSerializer.new(Merchant.find(params[:id]))
+    render :status => 204, :json => { :success => true }  
     Merchant.delete(params[:id])
   end
 
