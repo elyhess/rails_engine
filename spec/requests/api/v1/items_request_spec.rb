@@ -44,7 +44,8 @@ describe "Items API" do
 
     expect{ delete "/api/v1/items/#{item.id}" }.to change(Item, :count).by(-1)
     expect(response).to be_successful
-    expect(response.status).to eq(200)
+    expect(response.status).to eq(204)
+    expect(response.body).to be_empty
     expect{Item.find(item.id)}.to raise_error(ActiveRecord::RecordNotFound)
   end
   it "updates an item" do
