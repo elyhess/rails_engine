@@ -7,16 +7,32 @@ describe "Items API" do
     get '/api/v1/items'
 
     expect(response).to be_successful
-    items = JSON.parse(response.body)
-    expect(items['data'].count).to eq(3)
+    items = JSON.parse(response.body, symbolize_names: true)
+    expect(items[:data].count).to eq(3)
+    expect(items[:data][0]).to have_key(:id)
+    expect(items[:data][0]).to have_key(:type)
+    expect(items[:data][0]).to have_key(:attributes)
+
+    expect(items[:data][0][:attributes]).to have_key(:name)
+    expect(items[:data][0][:attributes]).to have_key(:description)
+    expect(items[:data][0][:attributes]).to have_key(:unit_price)
+    expect(items[:data][0][:attributes]).to have_key(:merchant_id)
   end
   it "can find an item by id" do
     id = create(:item).id
     get "/api/v1/items/#{id}"
 
     expect(response).to be_successful
-    item = JSON.parse(response.body)
-    expect(item["data"]["id"].to_i).to eq(id)
+    item = JSON.parse(response.body, symbolize_names: true)
+    expect(item[:data][:id].to_i).to eq(id)
+    expect(item[:data]).to have_key(:id)
+    expect(item[:data]).to have_key(:type)
+    expect(item[:data]).to have_key(:attributes)
+
+    expect(item[:data][:attributes]).to have_key(:name)
+    expect(item[:data][:attributes]).to have_key(:description)
+    expect(item[:data][:attributes]).to have_key(:unit_price)
+    expect(item[:data][:attributes]).to have_key(:merchant_id)
   end
   it "creates an item" do
     merchant = create(:merchant)
