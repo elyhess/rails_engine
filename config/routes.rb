@@ -7,6 +7,8 @@ Rails.application.routes.draw do
         get 'find_all', to: 'search#index'
       end
       namespace :merchants do
+        get 'most_revenue', to: 'revenue#index'
+        get 'most_items', to: 'items_sold#index'
         get 'find', to: 'search#show'
         get 'find_all', to: 'search#index'
       end
@@ -16,6 +18,7 @@ Rails.application.routes.draw do
       resources :merchants, except: [:new, :edit] do
         get '/items', to: 'merchants/items#index'
       end
+      get '/revenue', to: 'revenue#index'
     end
   end
 end

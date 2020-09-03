@@ -1,24 +1,36 @@
-# README
+##Rails Engine
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Scenario: You are working for a company developing an E-Commerce Application. Your team is working in a service-oriented architecture, meaning the front and back ends of this application are separate and communicate via APIs. Your job is to expose the data that powers the site through an API that the front end will consume.
 
-Things you may want to cover:
+```
+RAILS_ENGINE_DOMAIN: http://localhost:3000
+```
+### Rails Driver
+#### (Front End that consumes this project)
+```
+rails s -p 3001
+```
+#### to run the harness
+```
+bundle exec rspec spec/features/harness_spec.rb
+```
 
-* Ruby version
+### Setup
+**Database**  
+```
+$ bundle exec rake import
+```
+**Testing**
+```
+$ bundle exec rspec
+```
 
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+### Versions
+```
+  Rails 5.2.3
+  Ruby 2.5.3
+```
+### Schema
+<p align="center">
+ <img src="">
+</p>
