@@ -1,5 +1,5 @@
-##Rails Engine
-
+# Rails Engine
+## Mod 3 Solo Project: Building a Rails API 
 Scenario: You are working for a company developing an E-Commerce Application. Your team is working in a service-oriented architecture, meaning the front and back ends of this application are separate and communicate via APIs. Your job is to expose the data that powers the site through an API that the front end will consume.
 
 ```
@@ -32,5 +32,5 @@ $ bundle exec rspec
 ```
 ### Schema
 <p align="center">
- <img src="">
+ <img src="https://i.imgur.com/WiAPYl4.png">
 </p>
