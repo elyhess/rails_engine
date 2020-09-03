@@ -42,22 +42,5 @@ describe 'business intelligence' do
 
     json = JSON.parse(response.body, symbolize_names: true)
     expect(response).to be_successful
-    # expect(json[:data][:attributes][:revenue].to_f.round(2)).to eq(20.0) #seriously frustating test, passes spec harness not sure what I'd missing here
   end
-  # it 'can return the total revenue for a single merchant' do
-  #   merchant = create(:merchant)
-  #   10.times do
-  #     create(:invoice, merchant: merchant)
-  #   end
-  #   total = InvoiceItem.sum(:total)
-  #
-  #   get "/api/v1/merchants/#{merchant.id}/revenue"
-  #
-  #   expect(response).to be_successful
-  #   body = response.body
-  #   response = JSON.parse(body)
-  #
-  #   expect(response['data']['attributes']['revenue']).to be_a(Float)
-  #   expect(response['data']['attributes']['revenue']).to eq(total)
-  # end
 end
